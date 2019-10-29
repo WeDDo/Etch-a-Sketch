@@ -1,3 +1,4 @@
+const divColor = "white";
 let size = "20px";
 let containerDimension = 600;
 let gridSize = 16;
@@ -7,7 +8,6 @@ let button = document.querySelector("#promptButton");
 
 button.addEventListener("click", (e) => {
     gridSize = prompt("Enter grid size: ", "16");
-    console.log(containerDimension / gridSize)
     size = (containerDimension / gridSize) + "px";
     setupContainer();
     clearContainer();
@@ -17,6 +17,7 @@ button.addEventListener("click", (e) => {
 function setupContainer() {
     let row = "";
     let column = "";
+    container.style.border = "1px solid black";
     container.style.width = containerDimension + "px";
     container.style.height = containerDimension + "px";;
     container.style["grid-template-columns"] = `repeat(${gridSize}, size)`;
@@ -25,7 +26,7 @@ function setupContainer() {
 
 function createDiv() {
     let div = document.createElement("div");
-    div.style.background = "red";
+    div.style.background = divColor;
     div.style.height = size;
     div.style.width = size;
     div.addEventListener("mouseover", divChangeColor);
@@ -66,5 +67,5 @@ function divChangeColor(e) {
 }
 
 function divChangeColorOriginal(e) {
-    e.target.style.background = "red";
+    e.target.style.background = divColor;
 }
