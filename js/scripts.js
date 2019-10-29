@@ -6,14 +6,22 @@ let gridSize = 16;
 let container = document.querySelector("#container");
 let button = document.querySelector("#promptButton");
 
-button.addEventListener("click", (e) => {
+button.addEventListener("click", newGrid);
+
+//Creates a new grid when the button #promptButton is clicked
+function newGrid(e){
     gridSize = prompt("Enter grid size: ", "16");
+    if(gridSize <= 0){
+        newGrid(e);
+        return;
+    }
     size = (containerDimension / gridSize) + "px";
     setupContainer();
     clearContainer();
     addDivToGridContainer();
-});
+}
 
+//Set ups container based on gridSize and container dimensions
 function setupContainer() {
     let row = "";
     let column = "";
@@ -24,6 +32,7 @@ function setupContainer() {
     container.style["grid-template-rows"] = `repeat(${gridSize}, size)`;
 }
 
+//Creates div to add to the container
 function createDiv() {
     let div = document.createElement("div");
     div.style.background = divColor;
