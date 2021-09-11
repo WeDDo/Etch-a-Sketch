@@ -1,4 +1,5 @@
 const divColor = "white";
+<<<<<<< HEAD
 const simpleBorder = "1px solid black";
 
 const maxGridSize = 100;
@@ -58,25 +59,60 @@ function newGrid(event){
             fillPalette();
         }
     }
+=======
+let size = "20px";
+let containerDimension = 600;
+let gridSize = 16;
+
+let container = document.querySelector("#container");
+let button = document.querySelector("#promptButton");
+
+button.addEventListener("click", newGrid);
+
+//Creates a new grid when the button #promptButton is clicked
+function newGrid(e){
+    gridSize = prompt("Enter grid size: ", "16");
+    if(gridSize <= 0){
+        newGrid(e);
+        return;
+    }
+    size = (containerDimension / gridSize) + "px";
+    setupContainer();
+    clearContainer();
+    addDivToGridContainer();
+>>>>>>> 6e1ed6a7499174dbd3446d52b6e0c47fab77db61
 }
 
 //Set ups container based on gridSize and container dimensions
 function setupContainer() {
+<<<<<<< HEAD
     container.style.border = simpleBorder;
+=======
+    let row = "";
+    let column = "";
+    container.style.border = "1px solid black";
+>>>>>>> 6e1ed6a7499174dbd3446d52b6e0c47fab77db61
     container.style.width = containerDimension + "px";
     container.style.height = containerDimension + "px";;
     container.style["grid-template-columns"] = `repeat(${gridSize}, size)`;
     container.style["grid-template-rows"] = `repeat(${gridSize}, size)`;
+<<<<<<< HEAD
 
     containerCreated = true;
 }
 
 //Creates div(pixel) to add to the container(canvas)
+=======
+}
+
+//Creates div to add to the container
+>>>>>>> 6e1ed6a7499174dbd3446d52b6e0c47fab77db61
 function createDiv() {
     let div = document.createElement("div");
     div.style.background = divColor;
     div.style.height = size;
     div.style.width = size;
+<<<<<<< HEAD
 
 
     div.addEventListener("mousemove", function(event){
@@ -104,6 +140,14 @@ function createDiv() {
 
 //Fill grid with divs(pixels) to draw on
 function fillDrawingGrid() {
+=======
+    div.addEventListener("mouseover", divChangeColor);
+    //div.addEventListener("mouseleave", divChangeColorOriginal);
+    return div;
+}
+
+function addDivToGridContainer() {
+>>>>>>> 6e1ed6a7499174dbd3446d52b6e0c47fab77db61
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
             let div = createDiv();
@@ -116,13 +160,17 @@ function fillDrawingGrid() {
     }
 }
 
+<<<<<<< HEAD
 //Generates a random color code
+=======
+>>>>>>> 6e1ed6a7499174dbd3446d52b6e0c47fab77db61
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
     let color = '#';
     for (let i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
     }
+<<<<<<< HEAD
 
     return color;
 }
@@ -166,3 +214,21 @@ function clearGrid(){
         }
     }
 }
+=======
+    return color;
+  }
+
+function clearContainer(){
+    while(container.lastChild){
+        container.removeChild(container.lastChild);
+    }
+}
+
+function divChangeColor(e) {
+    e.target.style.background = getRandomColor();
+}
+
+function divChangeColorOriginal(e) {
+    e.target.style.background = divColor;
+}
+>>>>>>> 6e1ed6a7499174dbd3446d52b6e0c47fab77db61
